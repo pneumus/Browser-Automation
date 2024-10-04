@@ -1,3 +1,15 @@
+"""
+Selenium Module is a prerequisite!
+
+Replace "profile_path" with your Firefox profile:
+1. Type "about:profiles" in Firefox
+2. Copy the "Root Directory" of the "Default User"
+
+Replace "geckodriver_path" with your actual path
+1. On Linux, execute "whereis geckodriver"
+2. Copy the path
+"""
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
@@ -6,11 +18,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-profile_path = r'/home/mateo/.mozilla/firefox/v31x69ag.default-release'
+profile_path = r''
+geckodriver_path = ''
+
 options = Options()
 options.add_argument("--headless")
 options.profile = webdriver.FirefoxProfile(profile_path)
-service = Service("/usr/bin/geckodriver")
+service = Service(geckodriver_path)
 driver = webdriver.Firefox(service=service, options=options)
 driver.get("https://myactivity.google.com/page?utm_source=my-activity&hl=hu&page=youtube_comments")
 while True:
